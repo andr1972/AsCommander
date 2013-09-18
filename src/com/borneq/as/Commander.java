@@ -17,8 +17,9 @@ public class Commander extends JFrame {
 	private JPanel fkeyPanel;
 	private JPanel commandPanel;
 	private JTable tableLeft, tableRight;
-	private JSplitPane splitPanel;
-	private JScrollPane scrollLeft, scrollRight;
+	private JSplitPane splitPane;
+	private JTabbedPane tabbedPane;
+	private JScrollPane scrollLeft1, scrollLeft2, scrollRight;
 	private FileModel model;
 
 	public Commander(String title) {
@@ -46,14 +47,18 @@ public class Commander extends JFrame {
 		model = new FileModel();
 		tableLeft = new JTable(model);
 		tableRight = new JTable(model);
-		scrollLeft = new JScrollPane(tableLeft);
+		scrollLeft1 = new JScrollPane(tableLeft);
+		scrollLeft2 = new JScrollPane(new JTable(model));
 		scrollRight = new JScrollPane(tableRight);
-		splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, 
-				scrollLeft, scrollRight);
-		splitPanel.setResizeWeight(0.5);
-		splitPanel.setContinuousLayout(true);
-		splitPanel.setOneTouchExpandable(true);
-		add(splitPanel, BordListLayout.CENTER);
+		tabbedPane = new JTabbedPane();
+		tabbedPane.addTab("1", scrollLeft1);
+		tabbedPane.addTab("2", scrollLeft2);
+		splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, 
+				tabbedPane, scrollRight);
+		splitPane.setResizeWeight(0.5);
+		splitPane.setContinuousLayout(true);
+		splitPane.setOneTouchExpandable(true);
+		add(splitPane, BordListLayout.CENTER);
 	}
 
 	private void initMenu() {
