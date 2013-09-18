@@ -1,5 +1,6 @@
 package com.borneq.as;
 
+import java.awt.BorderLayout;
 import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
 
@@ -18,6 +19,7 @@ public class Commander extends JFrame {
 	private JPanel fkeyPanel;
 	private JPanel commandPanel;
 	private JTable tableLeft, tableRight;
+	private JSplitPane splitPanel;
 	private JScrollPane scrollLeft, scrollRight;
 	private FileModel model;
 
@@ -47,8 +49,12 @@ public class Commander extends JFrame {
 		tableRight = new JTable(model);
 		scrollLeft = new JScrollPane(tableLeft);
 		scrollRight = new JScrollPane(tableRight);
-		add(scrollLeft, BordListLayout.CENTER);
-		add(scrollRight, BordListLayout.CENTER);
+		splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, 
+				scrollLeft, scrollRight);
+		splitPanel.setResizeWeight(0.5);
+		splitPanel.setContinuousLayout(true);
+		splitPanel.setOneTouchExpandable(true);
+		add(splitPanel, BordListLayout.CENTER);
 	}
 
 	private void initMenu() {
