@@ -3,14 +3,12 @@ package com.borneq.as;
 import java.awt.BorderLayout;
 import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
-
 import javax.swing.*;
-
 import com.borneq.awt.BordListLayout;
-
 import java.awt.event.ActionEvent;
 
 public class Commander extends JFrame {
+	private static final long serialVersionUID = -6779403712513402695L;
 	private JMenuBar menuBar;
 	private JMenu menu, submenu;
 	private JMenuItem menuItem;
@@ -45,6 +43,7 @@ public class Commander extends JFrame {
 		add(fkeyPanel, BordListLayout.SOUTH);
 		add(commandPanel, BordListLayout.SOUTH);
 
+		model = new FileModel();
 		tableLeft = new JTable(model);
 		tableRight = new JTable(model);
 		scrollLeft = new JScrollPane(tableLeft);
