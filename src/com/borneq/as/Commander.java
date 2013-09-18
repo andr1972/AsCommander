@@ -9,8 +9,9 @@ import javax.swing.SwingUtilities;
 
 public class Commander extends JFrame {
 
-	public Commander(String string) {
-		// TODO Auto-generated constructor stub
+	public Commander(String title) {
+		super(title);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	protected static void createAndShowGUI() {
 		final Commander frame = new Commander("As Commander");
